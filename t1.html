@@ -1,503 +1,294 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Primeiro Trimestre - Gestor de Tarefas</title>
-<style>
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
+    <title>Gestão de Transportes | CTM</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-    body {
-        background-color: #f8fafc;
-        color: #1e293b;
-        line-height: 1.6;
-        min-height: 100vh;
-    }
+/* Navbar */
+.navbar {
+    background: #003049;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-logo {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.nav-toggle {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+.nav-menu {
+    display: flex;
+    gap: 1rem;
+}
+.nav-menu li a {
+    color: #fff;
+    text-decoration: none;
+}
 
-    /* Hero Section */
-    .hero-section {
-        width: 100%;
-        height: 60vh;
-        overflow: hidden;
-        position: relative;
-        background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
-    }
+/* Hero */
+.hero {
+    background: #f77f00;
+    color: #fff;
+    text-align: center;
+    padding: 4rem 2rem;
+}
+.hero-content h1 {
+    font-size: 2.5rem;
+}
+.hero-content p {
+    margin: 1rem 0;
+}
+.btn {
+    background: #003049;
+    color: #fff;
+    padding: 0.8rem 1.4rem;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+}
 
-    .hero-background {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.4;
-        filter: brightness(0.8);
-    }
+/* About */
+.section-about {
+    padding: 2rem;
+    text-align: center;
+}
+.section-about p {
+    max-width: 700px;
+    margin: auto;
+}
 
-    .hero-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        color: white;
-        width: 90%;
-        max-width: 900px;
-        z-index: 2;
-    }
+/* Benefits */
+.section-benefits {
+    padding: 2rem;
+}
+.benefits-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    margin-top: 1rem;
+}
+.card {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+}
 
-    .hero-content h1 {
-        font-size: 3rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
-        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
+/* Clients */
+.section-clients {
+    background: #eae2b7;
+    padding: 2rem;
+    text-align: center;
+}
 
-    .hero-content p {
-        font-size: 1.25rem;
-        margin-bottom: 2.5rem;
-        opacity: 0.9;
-        font-weight: 300;
-        line-height: 1.6;
-    }
+/* Testimonials */
+.section-testimonials {
+    padding: 2rem;
+}
+.testimonials-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.testimony {
+    background: #ffb4a2;
+    padding: 1rem;
+    border-radius: 6px;
+}
 
-    /* Barra de navegação principal */
-    .navbar-principal {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        border-bottom: 1px solid #e2e8f0;
-    }
+/* FOOTER */
+.footer {
+    background-color: #003049;
+    color: #ffffff;
+    padding: 3rem 2rem 1rem;
+}
 
-    .navbar-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
 
-    .navbar-logo {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #1e293b;
-        text-decoration: none;
-        padding: 1.5rem 0;
-    }
+.footer-col h3,
+.footer-col h4 {
+    margin-bottom: 1rem;
+    color: #fcbf49;
+}
 
-    .navbar-logo span {
-        color: #3b82f6;
-    }
+.footer-col p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
 
-    .navbar-principal ul {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
+.footer-col ul {
+    list-style: none;
+}
 
-    .navbar-principal li {
-        position: relative;
-    }
+.footer-col ul li {
+    margin-bottom: 0.6rem;
+}
 
-    .navbar-principal li a {
+.footer-col ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.footer-col ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 2rem;
+    padding-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+/* Responsivity */
+@media(max-width:768px) {
+    .nav-toggle {
         display: block;
-        color: #64748b;
-        text-decoration: none;
-        padding: 1.5rem 1.5rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
-        font-size: 0.95rem;
-        letter-spacing: 0.3px;
     }
-
-    .navbar-principal li a:hover {
-        color: #3b82f6;
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        gap: 0;
     }
-
-    .navbar-principal li a.active {
-        color: #3b82f6;
-        font-weight: 600;
-    }
-
-    .navbar-principal li a.active::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 1.5rem;
-        right: 1.5rem;
-        height: 2px;
-        background: #3b82f6;
-        border-radius: 1px;
-    }
-
-    /* Container principal */
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-    }
-
-    /* Menu de navegação das tarefas */
-    .tarefas-menu {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e2e8f0;
-        margin: 2rem 0;
-        overflow: hidden;
-        position: sticky;
-        top: 80px;
-        z-index: 900;
-    }
-
-    .menu-header {
-        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-        color: white;
-        padding: 1.5rem;
-        text-align: center;
-    }
-
-    .menu-items {
-        display: flex;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        overflow-x: auto;
-    }
-
-    .menu-item {
-        flex: 1;
-        border-right: 1px solid #e2e8f0;
-        min-width: 100px;
-    }
-
-    .menu-item:last-child {
-        border-right: none;
-    }
-
-    .menu-item a {
-        display: block;
-        padding: 1rem 0.5rem;
-        color: #475569;
-        text-decoration: none;
-        font-weight: 500;
-        text-align: center;
-        transition: all 0.2s ease;
-        background: white;
-    }
-
-    .menu-item a:hover {
-        background: #f8fafc;
-        color: #3b82f6;
-    }
-
-    .menu-item a.active-task {
-        background: #3b82f6;
-        color: white;
-        font-weight: 600;
-    }
-
-    /* Conteúdo principal */
-    .conteudo-principal {
-        padding: 2.5rem 0;
-    }
-
-    /* Seção de introdução */
-    .introducao {
-        background: white;
-        padding: 2.5rem;
-        border-radius: 12px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e2e8f0;
-        margin-bottom: 2rem;
-        text-align: center;
-    }
-
-    .introducao h2 {
-        color: #1e293b;
-        margin-bottom: 1.5rem;
-        font-size: 1.75rem;
-        font-weight: 600;
-    }
-
-    .introducao p {
-        margin-bottom: 1.5rem;
-        font-size: 1.05rem;
-        color: #475569;
-        line-height: 1.8;
-    }
-
-    /* Seção de tarefas */
-    .tarefas-section {
-        margin-top: 3rem;
-    }
-
-    .tarefas-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-    }
-
-    .tarefa-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e2e8f0;
-        transition: all 0.3s ease;
-        position: relative;
-    }
-
-    .tarefa-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-color: #3b82f6;
-    }
-
-    .tarefa-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-        border-radius: 12px 12px 0 0;
-    }
-
-    .tarefa-numero {
-        display: inline-block;
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-        color: white;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 40px;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
-
-    .tarefa-card h3 {
-        color: #1e293b;
-        margin-bottom: 1rem;
-        font-size: 1.25rem;
-        font-weight: 600;
-    }
-
-    .tarefa-card p {
-        color: #64748b;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
-    }
-
-    .tarefa-status {
-        display: inline-block;
-        padding: 0.4rem 1rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 500;
-    }
-
-    .status-pendente {
-        background-color: #fee2e2;
-        color: #dc2626;
-    }
-
-    .status-andamento {
-        background-color: #fef3c7;
-        color: #d97706;
-    }
-
-    .status-concluido {
-        background-color: #d1fae5;
-        color: #059669;
-    }
-
-    /* Botão voltar ao topo */
-    .topo-container {
-        text-align: center;
-        margin-top: 4rem;
-        padding: 2rem 0;
-    }
-
-    .voltar-topo {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        background: #3b82f6;
-        color: white;
-        text-decoration: none;
-        border-radius: 8px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        border: none;
-        cursor: pointer;
-        box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
-    }
-
-    .voltar-topo:hover {
-        background: #2563eb;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);
-    }
-
-    .voltar-topo:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
-    }
-
-    /* Responsividade */
-    @media (max-width: 1024px) {
-        .hero-content h1 {
-            font-size: 2.5rem;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .hero-section {
-            height: 50vh;
-        }
-
-        .hero-content h1 {
-            font-size: 2rem;
-        }
-
-        .hero-content p {
-            font-size: 1.1rem;
-        }
-
-        .navbar-container {
-            flex-direction: column;
-            padding: 1rem;
-        }
-
-        .navbar-principal ul {
-            width: 100%;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .navbar-principal li a {
-            padding: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .conteudo-principal {
-            padding: 1.5rem 0;
-        }
-
-        .introducao {
-            padding: 1.5rem;
-        }
-
-        .menu-items {
-            flex-wrap: wrap;
-        }
-
-        .menu-item {
-            flex: 1 0 25%;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .menu-item:nth-child(3n) {
-            border-right: none;
-        }
-
-        .tarefas-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .hero-content h1 {
-            font-size: 1.8rem;
-        }
-
-        .hero-content p {
-            font-size: 1rem;
-        }
-
-        .menu-item {
-            flex: 1 0 33%;
-        }
-    }
-</style>
+}
+    </style>
 </head>
 
 <body>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80"
-            alt="Planejamento e organização" class="hero-background">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-logo">CTM Transportes</div>
+        <div class="nav-toggle" id="nav-toggle">&#9776;</div>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#beneficios">Vantagens</a></li>
+            <li><a href="#clientes">Clientes</a></li>
+            <li><a href="#testemunhos">Testemunhos</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
         <div class="hero-content">
-            <h1>Primeiro Trimestre - Gestão de Tarefas</h1>
-            <p>Acompanhe e gerencie todas as tarefas do primeiro trimestre de forma organizada e eficiente</p>
+            <h1>Software de Gestão de Transportes</h1>
+            <p>Otimize toda a sua operação de transporte de forma intuitiva e profissional.</p>
+            <a href="#sobre" class="btn">Saber Mais</a>
+        </div>
+    </header>
+
+    <!-- Sobre -->
+    <section id="sobre" class="section-about">
+        <h2>O que é o CTM</h2>
+        <p>CTM – Cloud Transportation Management é uma plataforma web para gerir serviços de transporte com eficiência,
+            reduzindo reclamações e melhorando a rastreabilidade e atendimento ao cliente.</p>
+    </section>
+
+    <!-- Benefícios -->
+    <section id="beneficios" class="section-benefits">
+        <h2>Principais Vantagens</h2>
+        <div class="benefits-grid">
+            <div class="card">
+                <h3>Menos Reclamações</h3>
+                <p>Automatiza tarefas e garante rastreabilidade total das entregas.</p>
+            </div>
+            <div class="card">
+                <h3>Resposta Rápida</h3>
+                <p>Informações em tempo real melhoram o atendimento ao cliente.</p>
+            </div>
+            <div class="card">
+                <h3>Exatidão na Faturação</h3>
+                <p>Evita erros e esquecimentos graças a fluxos automatizados.</p>
+            </div>
         </div>
     </section>
 
-    <!-- Barra de navegação principal -->
-    <nav class="navbar-principal">
-        <div class="navbar-container">
-            <a href="home.html" class="navbar-logo">Task<span>Flow</span></a>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="projecto.html">Projeto</a></li>
-                <li><a href="sobre_mim.html">Sobre</a></li>
-                <li><a href="contacto.html" class="active">Contacto</a></li>
-            </ul>
+    <!-- Clientes / Integração -->
+    <section id="clientes" class="section-clients">
+        <h2>Integração com Clientes e Parceiros</h2>
+        <p>O CTM integra os seus sistemas com plataformas de clientes, oferecendo visibilidade total das operações.</p>
+    </section>
+
+    <!-- Testemunhos -->
+    <section id="testemunhos" class="section-testimonials">
+        <h2>O que dizem os nossos Clientes</h2>
+        <div class="testimonials-grid">
+            <div class="testimony">
+                <p>“O CTM tem-nos permitido melhorar as nossas operações…”</p>
+                <span>– Rita Cadima</span>
+            </div>
+            <div class="testimony">
+                <p>“Abrahamção intuitiva e eficiente no dia a dia…”</p>
+                <span>– João Amaral</span>
+            </div>
         </div>
-    </nav>
+    </section>
 
-    <!-- Container principal -->
-    <div class="container">
-        <!-- Menu de navegação das tarefas -->
-        <nav class="tarefas-menu">
-            <div class="menu-header">
-                <h3>Tarefas do Primeiro Trimestre</h3>
+    <footer class="footer">
+        <div class="footer-container">
+
+            <div class="footer-col">
+                <h3>CTM Transportes</h3>
+                <p>
+                    Plataforma profissional de gestão de transportes,
+                    otimizada para empresas modernas e orientadas a resultados.
+                </p>
             </div>
-            <ul class="menu-items">
-                <li class="menu-item">
-                    <a href="t1Itrim.html" class="active-task">T1</a>
-                </li>
 
-        </nav>
-
-        <!-- Conteúdo principal -->
-        <main class="conteudo-principal">
-
-
-            </section>
-
-            <!-- Botão voltar ao topo -->
-            <div class="topo-container">
-                <button class="voltar-topo" onclick="scrollToTop()">
-                    ↑ Voltar ao Topo
-                </button>
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#beneficios">Vantagens</a></li>
+                    <li><a href="#clientes">Clientes</a></li>
+                    <li><a href="#testemunhos">Testemunhos</a></li>
+                </ul>
             </div>
-        </main>
-    </div>
 
+            <div class="footer-col">
+                <h4>Contactos</h4>
+                <p>Email: joeldossantos818@gmail.com</p>
+                <p>Telefone: 946 40 97 70 </p>
+                <p>Portugal</p>
+            </div>
 
+        </div>
+
+    </footer>
+
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', () => {
+                const menu = document.getElementById('nav-menu');
+                if (menu.style.display === "flex") {
+                    menu.style.display = "none";
+                } else {
+                    menu.style.display = "flex";
+                }
+            });
+    </script>
 </body>
 
 </html>
