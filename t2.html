@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Master - Aprenda CSS</title>
+    <style>
+        /* Reset e variáveis CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        :root {
+            --cor-primaria: #4361ee;
+            --cor-secundaria: #3a0ca3;
+            --cor-accent: #f72585;
+            --cor-escura: #1a1a2e;
+            --cor-clara: #f8f9fa;
+            --cor-cinza: #6c757d;
+            --cor-sucesso: #4cc9f0;
+            --cor-aviso: #f8961e;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: var(--cor-escura);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(67, 97, 238, 0.3);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Navegação lateral */
+        .sidebar {
+            width: 280px;
+            float: left;
+            position: sticky;
+            top: 200px;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-right: 2rem;
+            border: 2px solid #e9ecef;
+        }
+
+        .sidebar h3 {
+            color: var(--cor-primaria);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--cor-accent);
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 0.8rem 1rem;
+            color: var(--cor-escura);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: linear-gradient(to right, transparent 50%, #f8f9fa 50%);
+            background-size: 200% 100%;
+            background-position: left bottom;
+        }
+
+        .nav-links a:hover {
+            background-position: right bottom;
+            color: var(--cor-primaria);
+            transform: translateX(10px);
+        }
+
+        .nav-links .active {
+            background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        /* Conteúdo principal */
+        .main-content {
+            overflow: hidden;
+        }
+
+        /* Seções */
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .section h2 {
+            color: var(--cor-primaria);
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section h2 i {
+            color: var(--cor-accent);
+        }
+
+        .section p {
+            color: var(--cor-escura);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Código CSS estilizado */
+        .code-container {
+            background: var(--cor-escura);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            border-left: 5px solid var(--cor-accent);
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        .css-selector {
+            color: #ff79c6;
+        }
+
+        .css-property {
+            color: #50fa7b;
+        }
+
+        .css-value {
+            color: #f1fa8c;
+        }
+
+        .css-comment {
+            color: #6272a4;
+        }
+
+        .css-punctuation {
+            color: #f8f8f2;
+        }
+
+        /* Exemplos interativos */
+        .demo-area {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px dashed #dee2e6;
+        }
+
+        .demo-title {
+            color: var(--cor-primaria);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        /* Exemplo de box-model */
+        .box-model-demo {
+            width: 300px;
+            height: 200px;
+            margin: 2rem auto;
+            padding: 30px;
+            border: 10px solid var(--cor-primaria);
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .box-model-demo::before,
+        .box-model-demo::after {
+            content: '';
+            position: absolute;
+            border: 2px dashed var(--cor-accent);
+        }
+
+        .box-model-demo::before {
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+        }
+
+        /* Exemplo de flexbox */
+        .flex-demo {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .flex-item {
+            flex: 1;
+            background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .flex-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        /* Exemplo de grid */
+        .grid-demo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .grid-item {
+            background: linear-gradient(135deg, var(--cor-accent), #f72585);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Exemplo de animação */
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animation-demo {
+            width: 100px;
+            height: 100px;
+            margin: 2rem auto;
+            background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+            border-radius: 50%;
+            animation: rotate 3s linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Cards de propriedades */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .property-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--cor-primaria);
+            transition: all 0.3s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .property-card h4 {
+            color: var(--cor-primaria);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .property-card p {
+            color: var(--cor-cinza);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 100%;
+                float: none;
+                position: static;
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
+
+            .section {
+                padding: 2rem;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 2rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+            }
+
+            .grid-demo {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .flex-demo {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .grid-demo {
+                grid-template-columns: 1fr;
+            }
+
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .code-container {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            border-bottom: 1px dotted var(--cor-primaria);
+            color: var(--cor-primaria);
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background: var(--cor-escura);
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>🎨 CSS Master</h1>
+        <p>Aprenda CSS de forma prática</p>
+    </header>
+
+    <!-- Container principal -->
+    <div class="container">
+
+        <!-- Sidebar de navegação -->
+        <aside class="sidebar">
+            <h3>📚 Conteúdo</h3>
+            <ul class="nav-links">
+                <li><a href="#intro" class="active">Introdução</a></li>
+                <li><a href="#sintaxe">Sintaxe CSS</a></li>
+                <li><a href="#seletores">Seletores</a></li>
+                <li><a href="#boxmodel">Box Model</a></li>
+                <li><a href="#flexbox">Flexbox</a></li>
+                <li><a href="#grid">CSS Grid</a></li>
+                <li><a href="#animacoes">Animações</a></li>
+                <li><a href="#responsivo">Responsividade</a></li>
+            </ul>
+        </aside>
+
+        <!-- Conteúdo principal -->
+        <main class="main-content">
+
+            <!-- Introdução -->
+            <section id="intro" class="section">
+                <h2><i class="fas fa-rocket"></i> Introdução ao CSS</h2>
+                <p>CSS <span class="tooltip">(Cascading Style Sheets)<span class="tooltiptext">Folhas de Estilo em
+                            Cascata</span></span> é uma linguagem de estilo usada para descrever a apresentação de
+                    documentos HTML. Enquanto o HTML estrutura o conteúdo, o CSS cuida da aparência visual.</p>
+
+                <div class="code-container">
+                    <span class="css-comment">/* Exemplo básico de CSS */</span><br>
+                    <span class="css-selector">body</span><span class="css-punctuation"> {</span><br>
+                    &nbsp;&nbsp;<span class="css-property">background-color</span><span class="css-punctuation">:</span>
+                    <span class="css-value">#f0f0f0</span><span class="css-punctuation">;</span><br>
+                    &nbsp;&nbsp;<span class="css-property">font-family</span><span class="css-punctuation">:</span>
+                    <span class="css-value">Arial, sans-serif</span><span class="css-punctuation">;</span><br>
+                    <span class="css-punctuation">}</span>
+                </div>
+            </section>
+
+            <!-- Sintaxe CSS -->
+            <section id="sintaxe" class="section">
+                <h2><i class="fas fa-code"></i> Sintaxe CSS</h2>
+                <p>A sintaxe CSS é composta por <strong>seletores</strong> e <strong>declarações</strong>. Cada
+                    declaração inclui uma propriedade e um valor.</p>
+
+                <div class="demo-area">
+                    <div class="demo-title">Estrutura básica:</div>
+                    <div class="code-container">
+                        <span class="css-selector">seletor</span><span class="css-punctuation"> {</span><br>
+                        &nbsp;&nbsp;<span class="css-property">propriedade</span><span class="css-punctuation">:</span>
+                        <span class="css-value">valor</span><span class="css-punctuation">;</span><br>
+                        <span class="css-punctuation">}</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seletores -->
+            <section id="seletores" class="section">
+                <h2><i class="fas fa-bullseye"></i> Seletores CSS</h2>
+                <p>Seletores determinam quais elementos HTML receberão os estilos definidos.</p>
+
+                <div class="properties-grid">
+                    <div class="property-card">
+                        <h4>Seletor de Tipo</h4>
+                        <p>Seleciona elementos pelo nome da tag</p>
+                        <code>p { color: blue; }</code>
+                    </div>
+
+                    <div class="property-card">
+                        <h4>Seletor de Classe</h4>
+                        <p>Seleciona elementos por classe</p>
+                        <code>.destaque { color: red; }</code>
+                    </div>
+
+                    <div class="property-card">
+                        <h4>Seletor de ID</h4>
+                        <p>Seleciona um elemento único por ID</p>
+                        <code>#menu { display: flex; }</code>
+                    </div>
+
+                    <div class="property-card">
+                        <h4>Seletor Universal</h4>
+                        <p>Seleciona todos os elementos</p>
+                        <code>* { margin: 0; padding: 0; }</code>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Box Model -->
+            <section id="boxmodel" class="section">
+                <h2><i class="fas fa-square"></i> Box Model</h2>
+                <p>Todo elemento HTML é tratado como uma caixa com: conteúdo, padding, border e margin.</p>
+
+                <div class="box-model-demo">
+                    Conteúdo
+                </div>
+
+                <div class="code-container">
+                    <span class="css-selector">.elemento</span><span class="css-punctuation"> {</span><br>
+                    &nbsp;&nbsp;<span class="css-property">width</span><span class="css-punctuation">:</span> <span
+                        class="css-value">300px</span><span class="css-punctuation">;</span><br>
+                    &nbsp;&nbsp;<span class="css-property">padding</span><span class="css-punctuation">:</span> <span
+                        class="css-value">20px</span><span class="css-punctuation">;</span><br>
+                    &nbsp;&nbsp;<span class="css-property">border</span><span class="css-punctuation">:</span> <span
+                        class="css-value">2px solid #000</span><span class="css-punctuation">;</span><br>
+                    &nbsp;&nbsp;<span class="css-property">margin</span><span class="css-punctuation">:</span> <span
+                        class="css-value">30px</span><span class="css-punctuation">;</span><br>
+                    <span class="css-punctuation">}</span>
+                </div>
+            </section>
+
+            <!-- Flexbox -->
+            <section id="flexbox" class="section">
+                <h2><i class="fas fa-th"></i> Flexbox</h2>
+                <p>Modelo de layout unidimensional para distribuir espaço entre itens em um container.</p>
+
+                <div class="demo-area">
+                    <div class="demo-title">Exemplo Flexbox:</div>
+                    <div class="flex-demo">
+                        <div class="flex-item">Item 1</div>
+                        <div class="flex-item">Item 2</div>
+                        <div class="flex-item">Item 3</div>
+                    </div>
+                </div>
+
+                <div class="code-container">
+                    <span class="css-selector">.container</span><span class="css-punctuation"> {</span><br>
+                    &nbsp;&nbsp;<span class="css-property">display</span><span class="css-punctuation">:</span> <span
+                        class="css-value">flex</span><span class="css-punctuation">;</span><br>
+                    &nbsp;&nbsp;<span class="css-property">justify-content</span><span class="css-punctuation">:</span>
+                    <span class="css-value">space-between</span><span class="css-punctuation">;</span><br>
+                    &nbsp;&nbsp;<span class="css-property">align-items</span><span class="css-punctuation">:</span>
+                    <span class="css-value">center</span><span class="css-punctuation">;</span><br>
+                    <span class="css-punctuation">}</span>
+                </div>
+            </section>
+
+            <!-- CSS Grid -->
+            <section id="grid" class="section">
+                <h2><i class="fas fa-table"></i> CSS Grid</h2>
+                <p>Sistema de layout bidimensional para criar designs complexos e responsivos.</p>
+
+                <div class="demo-area">
+                    <div class="demo-title">Exemplo Grid:</div>
+                    <div class="grid-demo">
+                        <div class="grid-item">Célula A</div>
+                        <div class="grid-item">Célula B</div>
+                        <div class="grid-item">Célula C</div>
+                        <div class="grid-item">Célula D</div>
+                        <div class="grid-item">Célula E</div>
+                        <div class="grid-item">Célula F</div>
+                    </div>
+                </div>
+
+                <div class="code-container">
+                    <span class="css-selector">.grid-container</span><span class="css-punctuation"> {</span><br>
+                    &nbsp;&nbsp;<span class="css-property">display</span><span class="css-punctuation">:</span> <span
+                        class="css-value">grid</span><span class="css-punctuation">;</span><br>
+                    &nbsp;&nbsp;<span class="css-property">grid-template-columns</span><span
+                        class="css-punctuation">:</span> <span class="css-value">repeat(3, 1fr)</span><span
+                        class="css-punctuation">;</span><br>
+                    &nbsp;&nbsp;<span class="css-property">gap</span><span class="css-punctuation">:</span> <span
+                        class="css-value">20px</span><span class="css-punctuation">;</span><br>
+                    <span class="css-punctuation">}</span>
+                </div>
+            </section>
+
+            <!-- Animações -->
+            <section id="animacoes" class="section">
+                <h2><i class="fas fa-magic"></i> Animações CSS</h2>
+                <p>Crie transições suaves e animações sem JavaScript usando keyframes.</p>
+
+                <div class="demo-area">
+                    <div class="demo-title">Exemplo de animação:</div>
+                    <div class="animation-demo">CSS</div>
+                </div>
+
+                <div class="code-container">
+                    <span class="css-selector">@keyframes</span> <span class="css-value">rotacao</span><span
+                        class="css-punctuation"> {</span><br>
+                    &nbsp;&nbsp;<span class="css-property">from</span><span class="css-punctuation"> {</span> <span
+                        class="css-property">transform</span><span class="css-punctuation">:</span> <span
+                        class="css-value">rotate(0deg)</span><span class="css-punctuation">; }</span><br>
+                    &nbsp;&nbsp;<span class="css-property">to</span><span class="css-punctuation"> {</span> <span
+                        class="css-property">transform</span><span class="css-punctuation">:</span> <span
+                        class="css-value">rotate(360deg)</span><span class="css-punctuation">; }</span><br>
+                    <span class="css-punctuation">}</span><br><br>
+                    <span class="css-selector">.elemento</span><span class="css-punctuation"> {</span><br>
+                    &nbsp;&nbsp;<span class="css-property">animation</span><span class="css-punctuation">:</span> <span
+                        class="css-value">rotacao 3s infinite linear</span><span class="css-punctuation">;</span><br>
+                    <span class="css-punctuation">}</span>
+                </div>
+            </section>
+
+            <!-- Responsividade -->
+            <section id="responsivo" class="section">
+                <h2><i class="fas fa-mobile-alt"></i> Design Responsivo</h2>
+                <p>Crie layouts que se adaptam a diferentes tamanhos de tela usando media queries.</p>
+
+                <div class="code-container">
+                    <span class="css-comment">/* Estilos para mobile */</span><br>
+                    <span class="css-selector">.container</span><span class="css-punctuation"> {</span><br>
+                    &nbsp;&nbsp;<span class="css-property">padding</span><span class="css-punctuation">:</span> <span
+                        class="css-value">1rem</span><span class="css-punctuation">;</span><br>
+                    <span class="css-punctuation">}</span><br><br>
+                    <span class="css-comment">/* Tablet */</span><br>
+                    <span class="css-selector">@media</span> <span class="css-punctuation">(</span><span
+                        class="css-property">min-width</span><span class="css-punctuation">:</span> <span
+                        class="css-value">768px</span><span class="css-punctuation">) {</span><br>
+                    &nbsp;&nbsp;<span class="css-selector">.container</span><span class="css-punctuation"> {</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="css-property">padding</span><span
+                        class="css-punctuation">:</span> <span class="css-value">2rem</span><span
+                        class="css-punctuation">;</span><br>
+                    &nbsp;&nbsp;<span class="css-punctuation">}</span><br>
+                    <span class="css-punctuation">}</span><br><br>
+                    <span class="css-comment">/* Desktop */</span><br>
+                    <span class="css-selector">@media</span> <span class="css-punctuation">(</span><span
+                        class="css-property">min-width</span><span class="css-punctuation">:</span> <span
+                        class="css-value">1024px</span><span class="css-punctuation">) {</span><br>
+                    &nbsp;&nbsp;<span class="css-selector">.container</span><span class="css-punctuation"> {</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="css-property">max-width</span><span
+                        class="css-punctuation">:</span> <span class="css-value">1200px</span><span
+                        class="css-punctuation">;</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="css-property">margin</span><span
+                        class="css-punctuation">:</span> <span class="css-value">0 auto</span><span
+                        class="css-punctuation">;</span><br>
+                    &nbsp;&nbsp;<span class="css-punctuation">}</span><br>
+                    <span class="css-punctuation">}</span>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+
+</html>
